@@ -1,6 +1,6 @@
 # castp-Script
 
-A Python script to run CASTP code from the command line.
+A Python script to run [CASTP](http://sts.bioe.uic.edu/castp/calculation.html) code from the command line.
 
 **This script uses selenium and geckodriver to load the webpage and parse it.**
 
@@ -36,6 +36,11 @@ change User-Agent with your browser's. For that, goto https://myhttpheader.com/.
 - If your network is slow, please set wait time to desired time.
 
 - If the code run succeeds, output files will be generated in the folder.
+
+
+## References
+
+-  Tian et al., Nucleic Acids Res. 2018. PMID: 29860391 DOI: 10.1093/nar/gky473. 
 
 
 
