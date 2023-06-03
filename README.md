@@ -1,8 +1,12 @@
 # castp-Script
 
-A Python script to run [CASTP](http://sts.bioe.uic.edu/castp/calculation.html) code from the command line.
+A Python script to run [CASTp](http://sts.bioe.uic.edu/castp/calculation.html) code from the command line.
+
+CASTp (expanded as Computer Atlas of Surface Topography of Proteins) is  an online tool used for finding surface pockets and internal cavities in proteins which are possibly active sites for ligand binding.
 
 **This script uses selenium and geckodriver to load the webpage and parse it.**
+
+**The script will take few seconds to run. An initial time delay of 10 seconds is added to avoid sending frequent requests to the website.**
 
 ## Instructions to Setup the script
 
@@ -32,10 +36,16 @@ change User-Agent with your browser's. For that, goto https://myhttpheader.com/.
 
     ```python castp.py -p <<<protein name>>>```
 
-- If you wish to mention radius probe, use `-r` or `--radius` arguement.
-- If your network is slow, please set wait time to desired time.
+- If you wish to mention radius probe, use `-r` or `--radius` arguement. Default value is _1.4_.
+- If your network is slow, please set wait time to desired time. Use the tag `--wait` or `-w` with time in seconds. Default value is _10_.
 
 - If the code run succeeds, output files will be generated in the folder.
+
+- Output consists of:
+    - Area and volume information.
+    - Image of protein structure
+    - Active sites and their information.
+    - Protein sequence.
 
 
 ## References
