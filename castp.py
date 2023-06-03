@@ -79,19 +79,19 @@ url = "http://sts.bioe.uic.edu/castp/index.html?" + job_id
 
 driver.get(url)
 WebDriverWait(driver, 10).until(lambda d: d.execute_script("return document.readyState") == "complete")
-#WebDriverWait(driver, 20).until(EC.invisibility_of_element_located((By.ID, "atom_table")))
+
 WebDriverWait(driver, 10).until(
      EC.presence_of_element_located((By.XPATH,'//*[@id="poc_table"]'))
  )
 time.sleep(wait_time)
 
 canvas = driver.find_element(By.CSS_SELECTOR,"#undefined")
-# get the canvas as a PNG base64 string
+
 canvas_base64 = driver.execute_script("return arguments[0].toDataURL('image/png').substring(21);", canvas)
-# decode
+
 canvas_png = base64.b64decode(canvas_base64)
 
-# save to a file
+
 with open(f"{args.pdb.split('.')[0]}.png", 'wb') as f:
     f.write(canvas_png)
 
@@ -137,12 +137,11 @@ with open(f"{args.pdb.split('.')[0]}_area_vol.txt","w") as f:
 df_csv = pd.DataFrame(data)
 df_csv.drop_duplicates(inplace=True)
 
-#df_csv.drop(df.index[0],axis=0, inplace=True)
 df_csv.reset_index(drop=True, inplace=True)
 print(df_csv)
 ppdb_df =  PandasPdb().read_pdb(args.pdb)
 df2 = ppdb_df.df['ATOM']
-#df_csv = pd.read_csv(args.csv)
+
 df_csv.columns = ["PocID", "Chain",	"residue_number","residue_name", "atom_name"]
 
 dtype_dict = {"PocID":"int64", "Chain":str, "residue_number":"int64",
@@ -154,9 +153,6 @@ output = pd.merge(df2, df_csv, on=["residue_number","residue_name", "atom_name"]
 new_out = output[["residue_name", "atom_name",'residue_number','x_coord', 'y_coord', 'z_coord']]
 
 new_out.to_excel(f"{args.pdb.split('.')[0]}.xlsx")
-
-with open(f"{args.pdb.split('.')[0]}.log","w") as f:
-    f.write(str(output[['x_coord', 'y_coord', 'z_coord']].mean()))
 
 print("files created succesfully")
 
