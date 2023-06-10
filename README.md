@@ -15,7 +15,7 @@ CASTp (expanded as Computer Atlas of Surface Topography of Proteins) is  an onli
 
     ```pip install -r requirements.txt```
 
-- Download geckodriver from the [github link](https://github.com/mozilla/geckodriver/releases) according to your OS.
+- Download geckodriver from the [github link](https://github.com/mozilla/geckodriver/releases) suitable for your OS.
 
 - **Linux** users should isntall geckodriver in `/usr/local/bin`or in `/usr/bin`.
 
