@@ -1,0 +1,29 @@
+[project]
+name = "castpfoldpy"
+version = "0.1.0"
+description = "A Python script to run [CASTpFold](https://cfold.bme.uic.edu/castpfold/) code from the command line"
+readme = "README.md"
+authors = [
+    { email = "athul111@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "biopython>=1.85",
+    "dataclasses>=0.8",
+    "pandas>=2.3.3",
+    "requests>=2.32.5",
+    "tqdm>=4.67.1",
+]
+
+[project.scripts]
+castpfoldpy = "castpfoldpy.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.8.0,<0.9"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.2",
+    "ruff>=0.13.3",
+]
