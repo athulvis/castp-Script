@@ -1,20 +1,17 @@
 import requests
 import time
-from bs4 import BeautifulSoup
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC 
-from biopandas.pdb import PandasPdb
+import zipfile
 import pandas as pd
 import argparse
 import sys
-import base64
-
+from pathlib import Path
+from tqdm import tqdm
 
 parser = argparse.ArgumentParser("Compares CASTP and PDB table and gets similar x,y, z")
 parser.add_argument("-p", "--pdb", required=True, type = str, help= 'Protein file name in pdb format.')
+parser.add_argument("-d", "--directory", required=False, type = str, help= 'directory to download castp files')
 parser.add_argument("-r","--radius", required=False, type=str, help='Value for radius probe. between 0.0 and 10.0')
+parser.add_argument("-f", '--flag', action='store_true', help='Use it if needed to calculate pocket coordinates')
 parser.add_argument("-w","--wait", required=False, type=int, help='Wait time to load the page. Default is 10. Use 20 \
 or more if internet is slow')
 
@@ -31,128 +28,85 @@ if args.wait:
 else:
     wait_time = 10
 
-url = 'http://sts.bioe.uic.edu/castp/submit_calc.php'
+url = 'https://cfold.bme.uic.edu/castpfold/submit_calc.php'
 headers = {
     'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0',
     'Accept': '*/*',
     'Accept-Language': 'en-US,en;q=0.5',
-    'Accept-Encoding': 'gzip, deflate',
+    'Accept-Encoding': 'gzip, deflate, br, zstd',
     'X-Requested-With': 'XMLHttpRequest',
-    'Origin': 'http://sts.bioe.uic.edu',
+    'Origin': 'https://cfold.bme.uic.edu',
     'DNT': '1',
     'Connection': 'keep-alive',
-    'Referer': 'http://sts.bioe.uic.edu/castp/calculation.html'
-}
+    'Referer': 'https://cfold.bme.uic.edu/castpfold/compute',
+    'Sec-Fetch-Dest': 'empty',
+    'Sec-Fetch-Mode': 'cors',
+    'Sec-Fetch-Site': 'same-origin',
+    'Priority': 'u=0'
+    }
 files = {
-    'file': (args.pdb, file, 'application/x-aportisdoc'),
+    'file': (args.pdb, file, 'application/vnd.palm'),
 }
 data = {
     'probe': radius,
-    'email': 'null'
+    'email': 'N/A'
 }
 
 response = requests.post(url, headers=headers, data=data, files=files)
 
-job_id = str(response.text)
+job_id = str(response.json()["jobid"])
 
 print(job_id)
 file.close()
-time.sleep(10)
+for _ in tqdm(range(10), desc="waiting...", unit="second"):
+    time.sleep(1)
 
 
-if sys.platform == "linux" or sys.platform == "linux2":
-    driver = webdriver.Firefox()
-elif sys.platform == "win32":
-    from selenium.webdriver.firefox.options import Options
-    options = Options()
-    options.binary_location = r'C:\Program Files\Mozilla Firefox\firefox.exe'
-    driver = webdriver.Firefox(executable_path=r'C:\WebDrivers\geckodriver.exe', options=options)
+
+downurl = "https://cfold.bme.uic.edu/castpfold/data/tmppdb/" + job_id + "/processed/" + job_id + ".zip"
+
+downres = requests.get(downurl, stream=True)
+
+content_type = downres.headers.get('Content-Type', '')
+
+if content_type != 'application/zip':
+    for _ in tqdm(range(30), desc="waiting a bit more...", unit="second"):
+        time.sleep(1)
+
+downres = requests.get(downurl, stream=True)
+
+savename = job_id +".zip"
+if args.directory:
+    save_path = Path(args.directory) / savename
+    extract_path = Path(args.directory)/job_id
 else:
-    print("System not supported. **Program will stop.**")
-    sys.exit()
-
-if not driver:
-    print("Webdriver not found. **Program will stop**")
-    sys.exit()
-
-url = "http://sts.bioe.uic.edu/castp/index.html?" + job_id
-
-driver.get(url)
-WebDriverWait(driver, 10).until(lambda d: d.execute_script("return document.readyState") == "complete")
-
-WebDriverWait(driver, 10).until(
-     EC.presence_of_element_located((By.XPATH,'//*[@id="poc_table"]'))
- )
-time.sleep(wait_time)
-
-canvas = driver.find_element(By.CSS_SELECTOR,"#undefined")
-
-canvas_base64 = driver.execute_script("return arguments[0].toDataURL('image/png').substring(21);", canvas)
-
-canvas_png = base64.b64decode(canvas_base64)
+    save_path = Path(args.pdb).parent / savename
+    extract_path = Path(args.pdb).parent / job_id
+if downres.status_code == 200:
+    with open(save_path, 'wb') as file:
+            for chunk in downres.iter_content(chunk_size=512):
+                file.write(chunk)
 
 
-with open(f"{args.pdb.split('.')[0]}.png", 'wb') as f:
-    f.write(canvas_png)
+extract_path.mkdir(parents=True, exist_ok=True)
+with zipfile.ZipFile(save_path, 'r') as zip_ref:
+    zip_ref.extractall(extract_path)
 
-css_txt = driver.find_element(By.CSS_SELECTOR,".seqpanel")
+if args.flag:
+    poc = job_id +".poc"
 
-with open(f"{args.pdb.split('.')[0]}_sequence.txt","w") as f:
-    f.write(str(css_txt.text))
+    df = pd.read_csv(extract_path/poc, sep='\s+', names=["atom", "atom_no", "residue_name", "atom_name",
+                        'residue_number','x_coord', 'y_coord', 'z_coord',
+                                        "val", "perc", "poc_id", "poc"])
 
-soup = BeautifulSoup(driver.page_source, 'html.parser')
-table = soup.find_all('table', {'id':'atom_table'})
-tr = table[0].find_all("tr")
-data = []
-for elem in tr[1:]:
-    sub_data = []
-    for sub_e in elem:
-        try:
-            if sub_e.get_text() != "\n":
-                sub_data.append(sub_e.get_text())
-        except:
-            continue
-        data.append(sub_data)
+    output = df[df["poc_id"]==1]
+    save_now = extract_path / job_id
+    new_out = output[["residue_name", "atom_name",'residue_number','x_coord', 'y_coord', 'z_coord']]
+    new_out.to_excel(f"{save_now}_pockets.xlsx")
 
-
-table2 = soup.find_all('table', {'id':'poc_table'})
-tr2 = table2[0].find_all("tr")
-data2 = []
-for ele in tr2[1:]:
-    sub_data2 = []
-    for sub_e2 in ele:
-        try:
-            if sub_e2.get_text() != "\n":
-                sub_data2.append(sub_e2.get_text())
-        except:
-            continue
-        data2.append(list(set(sub_data2)))
-
-
-driver.close()
-
-with open(f"{args.pdb.split('.')[0]}_area_vol.txt","w") as f:
-    f.write(str(data2))
-
-df_csv = pd.DataFrame(data)
-df_csv.drop_duplicates(inplace=True)
-
-df_csv.reset_index(drop=True, inplace=True)
-print(df_csv)
-ppdb_df =  PandasPdb().read_pdb(args.pdb)
-df2 = ppdb_df.df['ATOM']
-
-df_csv.columns = ["PocID", "Chain",	"residue_number","residue_name", "atom_name"]
-
-dtype_dict = {"PocID":"int64", "Chain":str, "residue_number":"int64",
-                "residue_name":str, "atom_name":str}
-
-df_csv = df_csv.astype(dtype_dict)
-
-output = pd.merge(df2, df_csv, on=["residue_number","residue_name", "atom_name"], how='inner')
-new_out = output[["residue_name", "atom_name",'residue_number','x_coord', 'y_coord', 'z_coord']]
-
-new_out.to_excel(f"{args.pdb.split('.')[0]}.xlsx")
+    with open(f"{save_now}.log","w") as f:
+        f.write(str(output[['x_coord', 'y_coord', 'z_coord']].mean()))
 
 print("files created succesfully")
+
 
