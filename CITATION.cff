@@ -13,8 +13,7 @@ message: >-
   52(W1), W194–W199. https://doi.org/10.1093/nar/gkae415.
 type: software
 authors:
-  - given-names: Athul
-    family-names: R T
+  - given-names: Athul R T
     affiliation: Sahya Digital Conservation Foundation
     orcid: 'https://orcid.org/0000-0001-5565-7470'
 identifiers:

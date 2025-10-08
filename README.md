@@ -89,7 +89,7 @@ Appreciate your citations if you are using this tool for research purpose. Pleas
 **Plain Text format**
 
   ```
-  Athul R T (Sahya Digital Conservation Foundation). CASTpFoldpy: Commandline tool to access CASTpFold server. Version 3.0, 2025. Repository: https://github.com/athulvis/castp-Script. DOI: 10.5281/zenodo.17292401
+  Athul R T. CASTpFoldpy: Commandline tool to access CASTpFold server. Version 3.0, 2025. Repository: https://github.com/athulvis/castp-Script. DOI: 10.5281/zenodo.17292401
 
   Ye, B., Tian, W., Wang, B., and Liang, J. (2024). CASTpFold: Computed Atlas of Surface Topography of the universe of protein Folds. Nucleic Acids Research, 52(W1), W194–W199. https://doi.org/10.1093/nar/gkae415.
   ```
