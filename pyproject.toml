@@ -1,7 +1,7 @@
 [project]
 name = "castpfoldpy"
 version = "0.1.0"
-description = "A Python script to run [CASTpFold](https://cfold.bme.uic.edu/castpfold/) code from the command line"
+description = "A Python CLI program to run [CASTpFold](https://cfold.bme.uic.edu/castpfold/) code from the command line"
 readme = "README.md"
 authors = [
     { email = "athul111@gmail.com" }
@@ -9,7 +9,7 @@ authors = [
 requires-python = ">=3.12"
 dependencies = [
     "biopython>=1.85",
-    "dataclasses>=0.8",
+    "dataclasses>=0.6",
     "pandas>=2.3.3",
     "requests>=2.32.5",
     "tqdm>=4.67.1",

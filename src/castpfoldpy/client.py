@@ -66,7 +66,7 @@ class CastpFoldClient:
         pdb_size = pdb_path.stat().st_size
 
         if pdb_size > 2 * 1024 * 1024:
-            raise SystemExit(f"PDB file size is greater than 2 MB")
+            raise SystemExit("PDB file size is greater than 2 MB")
 
         ok, msg = self._verify_pdb(pdb_path)
         if ok:
@@ -163,7 +163,7 @@ class CastpFoldClient:
 
         pockets_txt = Path(f"{save_now}_xyz.txt")
         with open(pockets_txt,"w") as f:
-            f.write(str(output[['x_coord', 'y_coord', 'z_coord']].mean()))
+            f.write(output[['x_coord', 'y_coord', 'z_coord']].mean().to_string())
 
         return pockets_csv, pockets_txt
 

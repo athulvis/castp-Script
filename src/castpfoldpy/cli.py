@@ -58,7 +58,7 @@ def argument_parser() -> argparse.ArgumentParser:
         "--wait",
         type=int,
         default = 20,
-        help="Initial wait time (seconds) before first download attempt. Default 10.",
+        help="Initial wait time (seconds) before first download attempt. Default 20.",
     )
     p.add_argument( "-ew",
         "--extra-wait",
