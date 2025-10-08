@@ -32,7 +32,7 @@ Install castpfoldpy from PyPi using the command
 ## Instructions to run
 - For help text, run :
   
-    ```python castp.py -h```
+    ```castpfoldpy -h```
     
 ### Operation modes
 This script allows to submit, download results separately as well as altogether using different modes.
@@ -57,7 +57,7 @@ This script allows to submit, download results separately as well as altogether 
 Download the results if the job ID is available. Requires `--job-id` argument.
 
   ```
-  python castp.py --download-only -j <JOB_ID> -d /path/to/output
+  castpfoldpy --download-only -j <JOB_ID> -d /path/to/output
   ```
     
 2. **Submit Only** (`-so`, `--submit-only`):
@@ -65,14 +65,14 @@ Download the results if the job ID is available. Requires `--job-id` argument.
 Uploads the PDB and prints the job ID. Results won't be downloaded. Requires `--pdb` argument.
 
   ```
-  python castp.py --submit-only -p path/to/protein.pdb
+  castpfoldpy --submit-only -p path/to/protein.pdb
   ```
     
 3. **Submit and Download** (`-sd`, `--submit-download`): 
 Uploads the PDB and then downloads the results. Requires `--pdb` argument.
 
   ```
-  python castp.py --submit-download -p path/to/protein.pdb -d /path/to/output --pocket
+  castpfoldpy --submit-download -p path/to/protein.pdb -d /path/to/output --pocket
   ```
 
 - If the code run successfully, output files will be generated in the output folder provided.
@@ -84,7 +84,7 @@ Uploads the PDB and then downloads the results. Requires `--pdb` argument.
     
 ## Citations
 
-Appreciate your citations if you are using this tool for your research purpose. Please cite the original CASTpFold paper along with this software.
+Appreciate your citations if you are using this tool for research purpose. Please cite the original CASTpFold paper along with this software.
 
 **Plain Text format**
 
