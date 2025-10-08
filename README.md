@@ -1,4 +1,10 @@
 # CASTpFoldpy
+
+[![Pytest](https://github.com/athulvis/castp-Script/actions/workflows/tests.yml/badge.svg)](https://github.com/athulvis/castp-Script/actions/workflows/tests.yml)
+[![image](https://img.shields.io/pypi/v/castpfoldpy.svg)](https://pypi.python.org/pypi/castpfoldpy)
+[![image](https://img.shields.io/pypi/l/castpfoldpy.svg)](https://pypi.python.org/pypi/castpfoldpy)
+[![image](https://img.shields.io/pypi/pyversions/castpfoldpy.svg)](https://pypi.python.org/pypi/castpfoldpy)
+
 A Python script to run [CASTpFold](https://cfold.bme.uic.edu/castpfold/) code from the command line.
 
 
