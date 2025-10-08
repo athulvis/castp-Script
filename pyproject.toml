@@ -14,6 +14,16 @@ dependencies = [
     "requests>=2.32.5",
     "tqdm>=4.67.1",
 ]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "GPL-3.0-or-later"
+license-files = ["LICEN[CS]E*"]
+
+[project.urls]
+Homepage = "https://github.com/athulvis/castp-Script"
+Issues = "https://github.com/athulvis/castp-Script/issues"
 
 [project.scripts]
 castpfoldpy = "castpfoldpy.cli:main"
