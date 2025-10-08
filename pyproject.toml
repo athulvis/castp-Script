@@ -15,7 +15,10 @@ dependencies = [
     "tqdm>=4.67.1",
 ]
 classifiers = [
-    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Operating System :: OS Independent",
 ]
 license = "GPL-3.0-or-later"
