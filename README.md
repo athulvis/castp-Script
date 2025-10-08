@@ -4,7 +4,9 @@ A Python script to run [CASTpFold](https://cfold.bme.uic.edu/castpfold/) code fr
 
 <!--toc:start-->
 - [castpfoldpy](#castpfoldpy)
-  - [Instructions to run the script](#instructions-to-run-the-script)
+  - [Installation](#installation)
+  - [About](#about)
+  - [Instructions to run](#instructions-to-run)
     - [Operation modes](#operation-modes)
     - [Arguments](#arguments)
     - [Examples](#examples)
@@ -19,6 +21,12 @@ CASTpFold (expanded as Computer Atlas of Surface Topography of the universe of p
 **The script will take few seconds to run. An initial time delay of 10 seconds is added to avoid sending frequent requests to the website.**
 
 **The maximum file size to upload is 2 MB.**
+
+## Installation
+
+Install castpfoldpy from PyPi using the command
+
+  ```pip install castpfoldpy```
 
 ## Instructions to run
 - For help text, run :
