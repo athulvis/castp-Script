@@ -1,4 +1,4 @@
-# castpfoldpy
+# CASTpFoldpy
 A Python script to run [CASTpFold](https://cfold.bme.uic.edu/castpfold/) code from the command line.
 
 
@@ -80,6 +80,48 @@ Uploads the PDB and then downloads the results. Requires `--pdb` argument.
     - Image of protein structure
     - Active sites and their information.
     - Protein sequence.
+    
+## Citations
+
+Appreciate your citations if you are using this tool for your research purpose. Please cite the original CASTpFold paper along with this software.
+
+**Plain Text format**
+
+  ```
+  Athul R T (Sahya Digital Conservation Foundation). CASTpFoldpy: Commandline tool to access CASTpFold server. Version 3.0, 2025. Repository: https://github.com/athulvis/castp-Script. DOI: 10.5281/zenodo.17292401
+
+  Ye, B., Tian, W., Wang, B., and Liang, J. (2024). CASTpFold: Computed Atlas of Surface Topography of the universe of protein Folds. Nucleic Acids Research, 52(W1), W194–W199. https://doi.org/10.1093/nar/gkae415.
+  ```
+
+**BIBTEX format**
+
+  ```  bibtex
+  @software{CASTpFoldpy_zenodo_17292401,
+    title        = {CASTpFoldpy : Commandline tool to access CASTpFold server},
+    author       = {R T, Athul},
+    year         = {2025},
+    organization = {Sahya Digital Conservation Foundation},
+    url          = {https://github.com/athulvis/castp-Script},
+    doi          = {10.5281/zenodo.17292401},
+    version      = {3.0},
+    note         = {If you use this software, please cite it using the metadata from this file.},
+  }
+  
+  @article{Ye2024CASTpFold,
+  author  = {Ye, Bowei and Tian, Wei and Wang, Boshen and Liang, Jie},
+  title   = {CASTpFold: Computed Atlas of Surface Topography of the universe of protein Folds},
+  journal = {Nucleic Acids Research},
+  volume  = {52},
+  number  = {W1},
+  pages   = {W194--W199},
+  year    = {2024},
+  doi     = {10.1093/nar/gkae415},
+  url     = {https://doi.org/10.1093/nar/gkae415}
+}
+
+  ```
+
+
     
 ## References
 

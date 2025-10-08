@@ -1,0 +1,45 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: 'CASTpFoldpy : Commandline tool to access CASTpFold server'
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Athul
+    family-names: R T
+    affiliation: Sahya Digital Conservation Foundation
+    orcid: 'https://orcid.org/0000-0001-5565-7470'
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.17292401
+repository-code: 'https://github.com/athulvis/castp-Script'
+abstract: >-
+  CASTpFoldpy is an automated Python-based commandline tool
+  designed to streamline the submission and retrieval of
+  protein structure analyses from the CASTpFold server.
+  CASTpFold is a widely used web server that identifies and
+  quantifies protein surface pockets, cavities and channels
+  using the alpha shape method providing key structural
+  insights for functional and drug design studies. However,
+  the manual submission of structures and downloading of
+  results can be time-consuming for large-scale analyses.
+
+  The CASTpFoldpy script automates the entire CASTpFold
+  workflow: it uploads user-provided protein structures in
+  PDB format, retrieves the assigned job ID, downloads the
+  processed results automatically and extracts the output
+  files in the working directory. Tool computes the grid box
+  dimensions (X, Y, Z) in a text file, by averaging the
+  atomic coordinates of residues within the selected pocket,
+  a feature particularly useful for active site prediction.
+
+  This automation enables seamless high-throughput protein
+  pocket analysis, reduces manual intervention and ensures
+  reproducible structural annotation pipelines integrating
+  CASTpFold results with downstream visualization and
+  computational workflows.
+commit: GPL
+version: '3.0'
