@@ -4,8 +4,13 @@
 cff-version: 1.2.0
 title: 'CASTpFoldpy : Commandline tool to access CASTpFold server'
 message: >-
-  If you use this software, please cite it using the
-  metadata from this file.
+  If you are using this tool for your research purpose.
+  Please cite the original CASTpFold paper along with this
+  software -
+  Ye, B., Tian, W., Wang, B., and Liang, J.
+  (2024). CASTpFold: Computed Atlas of Surface Topography of
+  the universe of protein Folds. Nucleic Acids Research,
+  52(W1), W194–W199. https://doi.org/10.1093/nar/gkae415.
 type: software
 authors:
   - given-names: Athul

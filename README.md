@@ -3,13 +3,14 @@ A Python script to run [CASTpFold](https://cfold.bme.uic.edu/castpfold/) code fr
 
 
 <!--toc:start-->
-- [castpfoldpy](#castpfoldpy)
-  - [Installation](#installation)
+- [CASTpFoldpy](#castpfoldpy)
   - [About](#about)
+  - [Installation](#installation)
   - [Instructions to run](#instructions-to-run)
     - [Operation modes](#operation-modes)
     - [Arguments](#arguments)
     - [Examples](#examples)
+  - [Citations](#citations)
   - [References](#references)
 <!--toc:end-->
 
