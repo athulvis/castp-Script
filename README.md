@@ -37,7 +37,7 @@ This script allows to submit, download results separately as well as altogether 
 - `-d`, `--directory`: Directory to save the CASTpFold ZIP and extracted files.
 - `-r`, `--radius`: Probe radius (Å) between 0.0 and 5.0 (default: **1.4**).
 - `-pc`, `--pocket`: If set, compute pocket coordinates and write CSV/TXT file.
-- `-w`, `--wait`: Initial wait time (seconds) before the first download attempt (default: **10**).
+- `-w`, `--wait`: Initial wait time (seconds) before the first download attempt (default: **20**).
 - `-ew`, `--extra-wait`: Extra wait time (seconds) before retrying when ZIP is not yet ready (default: **30**).
 - `-t`, `--retries`: Number of extra download retries after extra-wait period (default: **1**).
 - `--email`: Optional email passed to server. If provided, CASTpFold will send the download link to the email address. Default is **"N/A"**.
@@ -47,17 +47,17 @@ This script allows to submit, download results separately as well as altogether 
    
 Download the results if the job ID is available. Requires `--job-id` argument.
 
-    ```
-    python castp.py --download-only -j <JOB_ID> -d /path/to/output
-    ```
+  ```
+  python castp.py --download-only -j <JOB_ID> -d /path/to/output
+  ```
     
 2. **Submit Only** (`-so`, `--submit-only`):
     
 Uploads the PDB and prints the job ID. Results won't be downloaded. Requires `--pdb` argument.
 
-    ```
-    python castp.py --submit-only -p path/to/protein.pdb
-    ```
+  ```
+  python castp.py --submit-only -p path/to/protein.pdb
+  ```
     
 3. **Submit and Download** (`-sd`, `--submit-download`): 
 Uploads the PDB and then downloads the results. Requires `--pdb` argument.
