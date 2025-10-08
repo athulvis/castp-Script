@@ -1,4 +1,5 @@
 import sys
+import traceback
 import argparse
 from typing import Optional
 from pathlib import Path
@@ -112,6 +113,7 @@ def main(argv:Optional[list[str]] = None) -> int:
         return 0
     except Exception as e:
         print(f"Error: {e}", file=sys.stderr)
+        traceback.print_exc()
         return 1
 
 

@@ -51,7 +51,7 @@ class CastpFoldClient:
         try:
             parser = PDBParser(PERMISSIVE=True, QUIET=False)
             parser.get_structure("castpfoldpy", pdb)
-            return True, "PDB structure is correct."
+            return True, "PDB structure is validated."
         except Exception as e:
             return False, f"PDB parse error: {e}"
 
@@ -61,11 +61,16 @@ class CastpFoldClient:
             raise FileNotFoundError(f"PDB file not found: {pdb_path}")
 
         if not (0.0 <= float(radius) <= 5.0):
-            raise ValueError("Radius must be between 0.0 and 5.0 (Å)")
+            raise ValueError("ERROR: Radius must be between 0.0 and 5.0 (Å)")
+
+        pdb_size = pdb_path.stat().st_size
+
+        if pdb_size > 2 * 1024 * 1024:
+            raise SystemExit(f"PDB file size is greater than 2 MB")
 
         ok, msg = self._verify_pdb(pdb_path)
         if ok:
-            print("\n PDB structure is validated.\n")
+            print(msg)
         if not ok:
             raise SystemExit(f"PDB verification failed: {msg}")
 
