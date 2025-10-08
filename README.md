@@ -75,7 +75,7 @@ Uploads the PDB and then downloads the results. Requires `--pdb` argument.
     
 ## References
 
-```
 - Ye, B., Tian, W., Wang, B., & Liang, J. (2024). CASTpFold: Computed Atlas of Surface Topography of the universe of protein Folds. Nucleic Acids Research, 52(W1), W194–W199. https://doi.org/10.1093/nar/gkae415 
+
 - Fermi, G., & Perutz, M. F. (1984). THE CRYSTAL STRUCTURE OF HUMAN DEOXYHAEMOGLOBIN AT 1.74 ANGSTROMS RESOLUTION [Dataset]. In Worldwide Protein Data Bank. Worldwide Protein Data Bank. https://doi.org/10.2210/pdb4hhb/pdb 
-```
+
