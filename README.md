@@ -1,6 +1,7 @@
 # CASTpFoldpy
 
 [![Pytest](https://github.com/athulvis/castp-Script/actions/workflows/tests.yml/badge.svg)](https://github.com/athulvis/castp-Script/actions/workflows/tests.yml)
+[![DOI](https://zenodo.org/badge/648737639.svg)](https://doi.org/10.5281/zenodo.17292400)
 [![image](https://img.shields.io/pypi/v/castpfoldpy.svg)](https://pypi.python.org/pypi/castpfoldpy)
 [![image](https://img.shields.io/pypi/l/castpfoldpy.svg)](https://pypi.python.org/pypi/castpfoldpy)
 [![image](https://img.shields.io/pypi/pyversions/castpfoldpy.svg)](https://pypi.python.org/pypi/castpfoldpy)
