@@ -1,4 +1,4 @@
-name: Test Application
+name: Pytest
 on:
   pull_request:
   push:
