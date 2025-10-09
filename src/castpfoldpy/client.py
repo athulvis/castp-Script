@@ -180,12 +180,12 @@ class CastpFoldClient:
 
         else:
             jobid = self.submit(pdb, radius=radius, email=email)
-            print(f"job id for {pdb.name} is {jobid}")
+            print(f"Job submitted with job id for {pdb.name} is {jobid}")
 
             if out_dir is None:
                 out_dir = pdb.parent
 
-            submit_log = out_dir / f"{pdb.name}_submit.log"
+            submit_log = out_dir / f"{pdb.stem}_submit.log"
             with open(submit_log, "w") as file:
                 file.write(f"PDB file name : {pdb.name} \n JOB ID : {jobid}")
 
