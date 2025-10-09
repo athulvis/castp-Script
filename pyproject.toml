@@ -1,6 +1,6 @@
 [project]
 name = "castpfoldpy"
-version = "0.1.1"
+version = "0.1.2"
 description = "A Python CLI program to run [CASTpFold](https://cfold.bme.uic.edu/castpfold/) code from the command line"
 readme = "README.md"
 authors = [
